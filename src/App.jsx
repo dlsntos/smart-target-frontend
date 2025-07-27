@@ -9,15 +9,18 @@ function App() {
 
   return (
     <>
-      <div className='bg-black h-screen flex items-center justify-between px-40'>
-        <AdSection />
-        <div style={
-          {
-            height: '70%',
-            width: '40%',
-            backgroundColor: 'white',
-          }
-        }></div>
+      <div className='bg-black h-screen flex flex-col justify-center'>
+        <div className='flex items-center justify-between px-40'>
+          <AdSection />
+          <div style={
+            {
+              height: '70%',
+              width: '40%',
+              backgroundColor: 'white',
+            }
+          }>
+          </div>
+        </div>
       </div>
     </>
   )
