@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div className='bg-orange-300 h-screen flex items-center justify-between px-40'>
+      <div className='bg-black h-screen flex items-center justify-between px-40'>
         <AdSection />
         <div style={
           {
