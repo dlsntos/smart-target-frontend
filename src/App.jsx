@@ -13,6 +13,9 @@ function App() {
         <div className="absolute top-0 w-full text-center py-2 text-sm tracking-widest font-bold">
           INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
         </div>
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 rotate-[-90deg] origin-top-left text-sm tracking-widest font-semibold z-0">
+          INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
+        </div>
         <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
           <AdSection />
           <div style={
