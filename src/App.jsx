@@ -18,13 +18,7 @@ function App() {
         </div>
         <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
           <AdSection />
-          <div style={
-            {
-              height: '70%',
-              width: '40%',
-              backgroundColor: 'white',
-            }
-          }>
+          <div className="h-[70%] w-[40%] bg-white">
           </div>
         </div>
       </div>
