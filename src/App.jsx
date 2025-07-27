@@ -9,7 +9,10 @@ function App() {
 
   return (
     <>
-      <div className='bg-black h-screen flex flex-col justify-center'>
+      <div className='relative bg-black h-screen grid grid-cols-2 text-white overflow-hidden'>
+        <div className="absolute top-0 w-full text-center py-2 text-sm tracking-widest font-bold">
+          INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
+        </div>
         <div className='flex items-center justify-between px-40'>
           <AdSection />
           <div style={
