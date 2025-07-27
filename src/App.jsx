@@ -13,7 +13,7 @@ function App() {
         <div className="absolute top-0 w-full text-center py-2 text-sm tracking-widest font-bold">
           INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
         </div>
-        <div className='flex items-center justify-between px-40'>
+        <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
           <AdSection />
           <div style={
             {
