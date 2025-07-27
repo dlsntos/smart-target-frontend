@@ -13,8 +13,8 @@ function App() {
         <AdSection />
         <div style={
           {
-            height: '609px',
-            width: '500px',
+            height: '70%',
+            width: '40%',
             backgroundColor: 'white',
           }
         }></div>
