@@ -20,6 +20,7 @@ function App() {
         <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
           <AdSection />
           <div>
+            //Reference: https://youtu.be/0HJ1cMBkWJ4?si=9MgO4EPotEm_ES0K
             <WebCam className="h-[70%] w-[40%] bg-white"/>
           </div>
         </div>
