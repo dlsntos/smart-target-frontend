@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import AdSection from './components/AdSection'
+import WebCam from './components/Webcam'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
           <AdSection />
           <div className="h-[70%] w-[40%] bg-white">
+            <WebCam />
           </div>
         </div>
       </div>
