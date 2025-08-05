@@ -1,29 +1,47 @@
-import { useState } from 'react'
-import AdSection from './components/AdSection'
-import WebCam from './components/Webcam'
-
+import { useState } from 'react';
+import AdSection from './components/AdSection';
+import WebCam from './components/Webcam';
+import logoImage from './assets/photos/logo.jpg';
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const scrollingText = 'INDÚ•'.repeat(100);
 
   return (
-    <>
-      <div className='relative bg-black h-screen grid grid-cols-2 text-white overflow-hidden'>
-        <div className="absolute top-0 w-full text-center py-2 text-sm tracking-widest font-bold">
-          INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
+    <div className="relative bg-black h-screen grid grid-cols-2 text-white overflow-hidden">
+
+      <div className="absolute top-0 left-0 z-50">
+        <img src={logoImage} alt="Logo" className="w-[7.5rem] h-[7.5rem] object-contain" />
+      </div>
+
+      {/* Top: seamless horizontal scroll */}
+      <div className="absolute top-0 left-0 w-full h-[2.5rem] overflow-hidden z-40">
+        <div className="whitespace-nowrap text-2xl animate-scroll-horizontal flex">
+          <span>{scrollingText}</span>
+          <span className="ml-4">{scrollingText}</span>
         </div>
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 rotate-[-90deg] origin-top-left text-sm tracking-widest font-semibold z-0">
-          INDÚ•INDÚ•INDÚ•INDÚ•INDÚ
-        </div>
-        <div className='flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10'>
-          <AdSection />
-          <div className="h-[70%] w-[40%]">
-            {/*Reference: https://youtu.be/0HJ1cMBkWJ4?si=9MgO4EPotEm_ES0K*/}
-            <WebCam className="h-[70%] w-[40%] bg-white"/>
+      </div>
+
+      {/* Left: seamless vertical scroll rotated -90° */}
+      <div className="absolute top-0 bottom-0 left-0 w-[2.5rem] overflow-hidden z-40 flex items-center justify-center">
+        <div className="animate-scroll-vertical flex flex-col">
+          <div className="flex flex-col items-center">
+            <div className="text-2xl rotate-[-90deg] whitespace-nowrap leading-[2.5rem]">
+              {scrollingText}
+            </div>
           </div>
         </div>
       </div>
-    </>
-  )
+
+      {/* Main content */}
+      <div className="flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10">
+        <AdSection />
+        <div className="h-[70%] w-[40%]">
+          <WebCam className="h-[70%] w-[40%] bg-white" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
