@@ -47,9 +47,9 @@ function WebCam() {
         <div>
             <h2>Ad Category: {adCategory}</h2>
             <img
+                className="w-[400px] h-[300px] object-cover rounded-[10px] border-2 border-[#222]"
                 src="http://localhost:5000/video_feed"
                 alt="Webcam Stream"
-                style={{ width: 400, height: 300, objectFit: "cover", borderRadius: 10, border: "2px solid #222" }}
             />
         </div>
     );
