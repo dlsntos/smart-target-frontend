@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-function Ads() {
+import { useEffect, useState } from "react";function Ads() {
   const [adCategory, setAdCategory] = useState("idle");
   const [adImgUrl, setAdImgUrl] = useState("");
 
@@ -19,22 +18,15 @@ function Ads() {
   }, []);
 
   return (
-    <div className="h-48 w-64 bg-white text-black flex flex-col items-center justify-center border border-gray-300 rounded-xl shadow-lg">
+    <div className="h-48 w-64 bg-white text-black border border-gray-300 shadow-lg overflow-hidden relative">
       {adImgUrl && (
         <img
+          className="w-full h-full object-cover"
           src={adImgUrl}
           alt="Ad"
-          style={{
-            width: 320,
-            height: 240,
-            objectFit: "cover",
-            borderRadius: 8,
-            border: "2px solid #222",
-            marginBottom: 16,
-          }}
         />
       )}
-      <p className="text-2xl font-bold capitalize">
+      <p className="text-2xl font-bold capitalize text-center">
         {adCategory !== "idle" ? adCategory.replace("_", " ") : "No Target"}
       </p>
     </div>
