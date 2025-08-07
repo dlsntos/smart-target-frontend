@@ -14,24 +14,7 @@ function App() {
         <img src={logoImage} alt="Logo" className="w-[7.5rem] h-[7.5rem] object-contain" />
       </div>
 
-      {/* Top: seamless horizontal scroll */}
-      <div className="absolute top-0 left-0 w-full h-[2.5rem] overflow-hidden z-40">
-        <div className="whitespace-nowrap text-2xl animate-scroll-horizontal flex">
-          <span>{scrollingText}</span>
-          <span className="ml-4">{scrollingText}</span>
-        </div>
-      </div>
-
-      {/* Left: seamless vertical scroll rotated -90° */}
-      <div className="absolute top-0 bottom-0 left-0 w-[2.5rem] overflow-hidden z-40 flex items-center justify-center">
-        <div className="animate-scroll-vertical flex flex-col">
-          <div className="flex flex-col items-center">
-            <div className="text-2xl rotate-[-90deg] whitespace-nowrap leading-[2.5rem]">
-              {scrollingText}
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Main content */}
       <div className="flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10">
