@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdSection from './components/AdSection';
 import WebCam from './components/Webcam';
+import EmailPage from './components/EmailPage';
 import ConsentPage from './components/ConsentPage';
 import logoImage from './assets/photos/logo.jpg';
 
@@ -47,6 +48,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<ConsentPage />} />  
+        <Route path="/email" element={<EmailPage />} />
         <Route path="/ads" element={<Home />} />        
       </Routes>
     </Router>
