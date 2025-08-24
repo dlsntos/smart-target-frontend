@@ -9,10 +9,9 @@ function EmailPage() {
         </h1>
         <h2 className="text-2xl mb-6">Please Enter Your Email Here!</h2>
         <input
-          type="email"
-          placeholder="example@email.com"
-          className="px-4 py-2 rounded-md w-80 border-2 border-black text-black bg-transparent 
-           hover:bg-black hover:text-white transition duration-300 cursor-pointer"
+          type="text"
+          placeholder="Please enter your email here"
+          className="px-4 py-2 rounded-md w-80 border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none"
         />
         <p className="mb-6">
           This is for your responses so we can back to you for an improved service!
