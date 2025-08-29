@@ -4,7 +4,7 @@ import WebCam from './components/Webcam';
 import EmailPage from './components/EmailPage';
 import ConsentPage from './components/ConsentPage';
 import LandingPage from './components/LandingPage';
-import logoImage from './assets/photos/logo.jpg';
+import logoImage from './assets/photos/logo.png';
 
 // keep your original layout as Home
 function Home() {

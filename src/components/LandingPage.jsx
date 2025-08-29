@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoImage from "../assets/photos/logo.jpg";
+import logoImage from "../assets/photos/logo.png";
 
 function LandingPage() {
   const scrollingText = "INDÚ•".repeat(100);
