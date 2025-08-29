@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function EmailPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/ads");
+  };
+
   return (
     <div className="h-screen w-screen bg-black text-white flex items-center justify-center">
-      <div className="flex flex-col items-center space-y-6">
+      <div className="opacity-0 animate-fadeIn transition-all duration-1000 ease-out flex flex-col items-center space-y-6">
         <h1 className="text-9xl font-extrabold mb-10 italic tracking-tighter">
           INDÚ
         </h1>
@@ -16,7 +23,10 @@ function EmailPage() {
         <p className="mb-6">
           This is for your responses so we can back to you for an improved service!
         </p>
-        <button className="px-6 py-2 bg-white text-black font-bold rounded-md hover:bg-gray-200 transition">
+        <button
+          onClick={handleSubmit}
+          className="px-6 py-2 bg-white text-black font-bold rounded-md transition duration-300 ease-in-out hover:scale-105"
+        >
           Submit
         </button>
       </div>
