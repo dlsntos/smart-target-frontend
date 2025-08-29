@@ -7,12 +7,11 @@ function EmailPage() {
   const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    // Simple email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
-    if (!emailRegex.test(email)) {
+    if (!gmailRegex.test(email)) {
       setError("❌ Please enter a valid email address.");
-      throw new Error("Invalid email entered"); // actually throws an exception
+      throw new Error("Invalid Gmail entered"); // actually throws an exception
     } else {
       setError(""); // clear error if valid
       navigate("/ads");
@@ -31,14 +30,14 @@ function EmailPage() {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Please enter your email here"
+          placeholder="Enter your Gmail address"
           className="px-4 py-2 rounded-md w-80 border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none"
         />
 
         {error && <p className="text-red-500">{error}</p>}
 
         <p className="mb-6">
-          This is for your responses so we can back to you for an improved service!
+          This is for your responses so we can get back to you for an improved service!
         </p>
 
         <button
