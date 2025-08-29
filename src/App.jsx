@@ -3,6 +3,7 @@ import AdSection from './components/AdSection';
 import WebCam from './components/Webcam';
 import EmailPage from './components/EmailPage';
 import ConsentPage from './components/ConsentPage';
+import LandingPage from './components/LandingPage';
 import logoImage from './assets/photos/logo.jpg';
 
 // keep your original layout as Home
@@ -47,7 +48,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ConsentPage />} />  
+        <Route path="/" element={<LandingPage />} />  
+        <Route path="/consent" element={<ConsentPage />} />  
         <Route path="/email" element={<EmailPage />} />
         <Route path="/ads" element={<Home />} />        
       </Routes>
