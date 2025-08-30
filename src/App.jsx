@@ -5,6 +5,8 @@ import EmailPage from './components/EmailPage';
 import ConsentPage from './components/ConsentPage';
 import LandingPage from './components/LandingPage';
 import logoImage from './assets/photos/logo.png';
+import Feedback from './components/Feedback';
+import Wrongpage from './components/wrongpage';
 
 // keep your original layout as Home
 function Home() {
@@ -51,7 +53,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />  
         <Route path="/consent" element={<ConsentPage />} />  
         <Route path="/email" element={<EmailPage />} />
-        <Route path="/ads" element={<Home />} />        
+        <Route path="/ads" element={<Home />} />   
+        <Route path="/feedback" element={<Feedback />} /> 
+        <Route path="/wrongpage" element={<Wrongpage />} />       
       </Routes>
     </Router>
   );
