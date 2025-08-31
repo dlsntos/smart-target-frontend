@@ -5,6 +5,27 @@ import { useNavigate } from "react-router-dom";
 function ConsentPage() {
   const navigate = useNavigate();
 
+  const recordConsent = async (choice) => {
+    try {
+      await fetch("http://localhost:5000/api/consent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ choice }) // "agree" or "disagree"
+      });
+    } catch (err) {
+      console.error("Failed to record consent:", err);
+    }
+  };
+
+  const handleAgree = async () => {
+    await recordConsent("agree");
+    navigate("/email"); // proceed after recording
+  };
+
+  const handleDisagree = async () => {
+    await recordConsent("disagree");
+    navigate(-1); // go back after recording
+  };
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-black text-white">
       <div className="opacity-0 animate-fadeIn transition-all duration-1000 ease-out flex flex-col items-center">
@@ -42,13 +63,13 @@ function ConsentPage() {
         {/* Buttons */}
         <div className="flex gap-6">
           <button
-            onClick={() => navigate("/email")}
+            onClick={handleAgree}
             className="px-6 py-2 bg-white text-black rounded-xl font-semibold transition duration-300 ease-in-out hover:scale-105"
           >
             YES
           </button>
           <button
-            onClick={() => navigate(-1)} 
+            onClick={handleDisagree} 
             className="px-6 py-2 bg-white text-black rounded-xl font-semibold transition duration-300 ease-in-out hover:scale-105"
           >
             NO
