@@ -14,7 +14,9 @@ function Wrongpage() {
     if (location.state?.email) {
       setUserEmail(location.state.email);
     } else {
-      setMessage("⚠️ User email is missing. Please go back and enter your email.");
+      setMessage(
+        "⚠️ User email is missing. Please go back and enter your email."
+      );
     }
   }, [location.state]);
 
@@ -51,54 +53,53 @@ function Wrongpage() {
 
   return (
     <div className="h-screen w-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="flex flex-col items-center space-y-6 w-full max-w-3xl">
-        <h1 className="text-9xl font-extrabold mb-10 italic tracking-tighter">
+      <div className="h-full flex flex-col items-center space-y-6 w-full max-w-3xl">
+        <h1 className="text-9xl font-extrabold mt-7 mb-7 italic tracking-tighter">
           INDÚ
         </h1>
-        <h2 className="text-3xl mb-4 text-center">Oops!</h2>
+        <h2 className="text-2xl mb-8 text-center font-bold">Oops!</h2>
 
-        <p className="text-center text-lg">
-          It looks like your demographic isn’t currently being selected. 
-          We apologize for the inconvenience. Please provide your feedback so we can improve. Answer the post-survey in the QR CODE for a chance to win 500 pesos in gcash :P
+        <p className="text-justify text-lg">
+          It looks like your demographic isn’t currently being selected. We
+          apologize for the inconvenience. Please provide your feedback so we
+          can improve. Answer the post-survey in the QR CODE for a chance to win
+          500 pesos in gcash :P
         </p>
 
-        {/* Large textarea input */}
-        <textarea
-          value={feedback}
-          onChange={(e) => setFeedback(e.target.value)}
-          placeholder="Enter your feedback here..."
-          className="w-full h-64 p-4 rounded-md border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none resize-none"
-        />
-
-        {message && (
-          <p
-            className={`text-sm ${
-              message.startsWith("✅") ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {message}
-          </p>
-        )}
-
-        {/* Optional QR code for feedback */}
-        <div className="flex flex-col items-center mt-4">
-          <img
-            src={qrImage}
-            alt="Feedback QR Code"
-            className="w-36 h-36"
+        <div className="flex justify-evenly w-full">
+          {/* Large textarea input */}
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            placeholder="Enter your feedback here..."
+            className="w-full h-64 p-4 rounded-md border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none resize-none"
           />
-          <p className="mt-2 text-gray-400 text-center text-sm">
-            Scan this QR code to submit feedback
-          </p>
-        </div>
 
-        {/* Submit button */}
-        <button
-          onClick={handleSubmit}
-          className="px-6 py-2 bg-white text-black font-bold rounded-md hover:bg-gray-200 transition mt-4"
-        >
-          Submit
-        </button>
+          {message && (
+            <p
+              className={`text-sm ${
+                message.startsWith("✅") ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {message}
+            </p>
+          )}
+
+          {/* Optional QR code for feedback */}
+          <div className="flex flex-col items-center ml-7">
+            <img src={qrImage} alt="Feedback QR Code" className="w-36 h-36" />
+            <p className="mt-2 text-gray-400 text-justify text-m">
+              Scan this QR code to submit feedback
+            </p>
+            {/* Submit button */}
+            <button
+              onClick={handleSubmit}
+              className="px-6 py-2 bg-white text-black font-bold rounded-md hover:bg-gray-200 transition mt-4"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
