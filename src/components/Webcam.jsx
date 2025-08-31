@@ -59,6 +59,11 @@ function WebCam() {
   // ---------------- Action Handlers ----------------
   const handleProceed = async () => {
     try {
+      await fetch("http://localhost:5000/confirm-visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ category: adCategory }),
+    });
       await fetch("http://localhost:5000/confirm-email", { method: "POST" });
       await fetch("http://localhost:5000/close-camera", { method: "POST" });
       navigate("/feedback", { state: { email: userEmail } });
