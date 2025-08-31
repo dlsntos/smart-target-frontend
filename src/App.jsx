@@ -10,7 +10,7 @@ import Wrongpage from './components/wrongpage';
 
 // keep your original layout as Home
 function Home() {
-  const scrollingText = 'INDÚ•'.repeat(100);
+  const scrollingText = '\u00A0INDÚ\u00A0'.repeat(100);
 
   return (
     <div className="relative bg-black h-screen grid grid-cols-2 text-white overflow-hidden">
@@ -19,7 +19,7 @@ function Home() {
       </div>
 
       <div className="absolute top-0 left-0 w-full h-[2.5rem] overflow-hidden z-40">
-        <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex">
+        <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex font-extrabold italic tracking-tighter">
           <div className="ml-4">{scrollingText}</div>
         </div>
       </div>
@@ -28,7 +28,7 @@ function Home() {
       <div className="absolute top-0 bottom-0 left-0 w-[2.5rem] overflow-hidden z-40 flex items-center justify-center">
         <div className="animate-scroll-vertical flex flex-col">
           <div className="flex flex-col items-center">
-            <div className="text-2xl rotate-[-90deg] whitespace-nowrap leading-[2.5rem]">
+            <div className="text-2xl rotate-[-90deg] whitespace-nowrap leading-[2.5rem] font-extrabold italic tracking-tighter">
               {scrollingText}
             </div>
           </div>
