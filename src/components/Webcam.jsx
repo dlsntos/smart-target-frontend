@@ -134,22 +134,22 @@ function WebCam() {
         Align your face with the outline for best results. The ad preview will update according to the locked category.
       </p>
 
-      <div className="flex flex-col gap-2 mt-4">
+      <div className="w-[660px] flex gap-2 mt-4">
         <button
           onClick={handleProceed}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition"
+          className="px-2 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition"
         >
           ✅ Yes — Proceed to Feedback
         </button>
         <button
           onClick={handleReset}
-          className="px-4 py-2 bg-yellow-500 text-black rounded-lg shadow-md hover:bg-yellow-600 transition"
+          className="px-2 py-2 bg-yellow-500 text-black rounded-lg shadow-md hover:bg-yellow-600 transition"
         >
           🔄 No — Reset and Scan Again
         </button>
         <button
           onClick={handleProblem}
-          className="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition"
+          className="px-2 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition"
         >
           ⚠️ My demographic isn’t showing up
         </button>
