@@ -1,27 +1,54 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation,} from "react-router-dom";
 import qrImage from "../assets/qr.png"; // adjust path if needed
 
 function Feedback() {
   const [feedback, setFeedback] = useState("");
   const [message, setMessage] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (location.state?.email) {
+      setUserEmail(location.state.email);
+    } else {
+      setMessage("⚠️ User email is missing. Please go back and enter your email.");
+    }
+  }, [location.state]);
+
+  const handleSubmit = async () => {
     if (!feedback.trim()) {
       setMessage("⚠️ Please enter your feedback before submitting.");
       return;
     }
 
-    setMessage("✅ Feedback submitted! Redirecting...");
-    setFeedback(""); // clear textarea
+    if (!userEmail) return; // don't submit if email missing
 
-    // Redirect after short delay
-    setTimeout(() => {
-      navigate("/"); // go back to landing page
-    }, 1500); // 1.5 seconds
+    try {
+      const response = await fetch("http://localhost:5000/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userEmail, message: feedback }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage(`✅ Feedback submitted! Your feedback ID is ${result.id}`);
+        setFeedback("");
+
+        setTimeout(() => {
+          navigate("/"); // redirect to landing page
+        }, 1500);
+      } else {
+        setMessage(`⚠️ ${result.error}`);
+      }
+    } catch (err) {
+      setMessage("⚠️ Failed to submit feedback. Please try again.");
+      console.error(err);
+    }
   };
-
   return (
     <div className="h-screen w-screen bg-black text-white flex items-center justify-center px-4">
       <div className="flex flex-col items-center space-y-6 w-full max-w-3xl">

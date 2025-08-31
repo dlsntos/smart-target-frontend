@@ -29,6 +29,7 @@ function EmailPage() {
       console.log("Email submitted & sent:", data);
 
       navigate("/ads");  // go to ads page
+      navigate("/ads", { state: { email } });
     } catch (err) {
       console.error("Error submitting email:", err);
       setError("Failed to submit email. Try again.");

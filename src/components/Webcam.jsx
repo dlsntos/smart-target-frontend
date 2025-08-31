@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function WebCam() {
   const [adCategory, setAdCategory] = useState("idle");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userEmail = location.state?.email;
+  
   const [attributes, setAttributes] = useState({
     age: "Unknown",
     gender: "Unknown",
@@ -48,14 +54,14 @@ function WebCam() {
 
     // Close camera
     await fetch("http://localhost:5000/close-camera", { method: "POST" });
-
+    
     // Navigate to feedback
-    window.location.href = "/feedback";
+    navigate("/feedback", { state: { email: userEmail } });
   } catch (err) {
     console.error("Error sending email or closing camera:", err);
   }
 };
-
+//navigate("/feedback", { state: { email: userEmail } });
 
   const handleReset = () => {
     fetch("http://localhost:5000/reset", { method: "POST" })
