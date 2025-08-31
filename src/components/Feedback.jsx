@@ -50,35 +50,43 @@ function Feedback() {
     }
   };
   return (
-    <div className="h-screen w-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="flex flex-col items-center space-y-6 w-full max-w-3xl">
-        <h1 className="text-9xl font-extrabold mb-10 italic tracking-tighter">
+    <div className="h-screen w-screen bg-black text-white flex items-center justify-center p-5">
+      <div className="h-full flex flex-col items-center space-y-6 w-full max-w-3xl">
+        <h1 className="text-9xl font-extrabold mb-7 italic tracking-tighter">
           INDÚ
         </h1>
-        <h2 className="text-2xl mb-6 text-center">FEEDBACK</h2>
+        <h2 className="text-2xl mb-8 text-center font-bold">FEEDBACK</h2>
 
         <p className="text-center text-lg">
           Please check your spam folder to answer the Google Form so that we can 
           know your experience on our system! Your feedback is very valuable to us.
         </p>
 
-        <textarea
+        <div className="flex justify-evenly">
+          <textarea
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
           placeholder="Enter your feedback here..."
           className="w-full h-64 p-4 rounded-md border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none resize-none"
-        />
-
-        {/* QR code below textarea */}
-        <div className="flex flex-col items-center mt-4">
-          <img
-            src={qrImage}
-            alt="Feedback QR Code"
-            className="w-36 h-36"
           />
-          <p className="mt-2 text-gray-400 text-center text-sm">
-            Scan this QR code and answer our post-survey for a chance to win 500 pesos sa Gcash mo :P.
-          </p>
+
+          {/* QR code beside textarea */}
+          <div className="flex flex-col items-center ml-7">
+            <img
+              src={qrImage}
+              alt="Feedback QR Code"
+              className="w-36 h-36"
+            />
+            <p className="mt-2 text-gray-400 text-justify text-m">
+              Scan this QR code and answer our post-survey for a chance to win 500 pesos sa Gcash mo :P.
+            </p>
+            <button
+              onClick={handleSubmit}
+              className="px-16 py-2 mt-4 bg-white text-black font-bold rounded-md hover:bg-gray-200 transition"
+            >
+              Submit
+            </button>
+          </div>
         </div>
 
         {message && (
@@ -90,13 +98,6 @@ function Feedback() {
             {message}
           </p>
         )}
-
-        <button
-          onClick={handleSubmit}
-          className="px-6 py-2 bg-white text-black font-bold rounded-md hover:bg-gray-200 transition"
-        >
-          Submit
-        </button>
       </div>
     </div>
   );
