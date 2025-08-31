@@ -6,8 +6,18 @@ function WebCam() {
   const [adCategory, setAdCategory] = useState("idle");
   const navigate = useNavigate();
   const location = useLocation();
-  const userEmail = location.state?.email;
   
+  const [userEmail, setUserEmail] = useState(() => {
+    return location.state?.email || localStorage.getItem("userEmail") || "";
+  });
+
+  useEffect(() => {
+    if (location.state?.email) {
+      localStorage.setItem("userEmail", location.state.email);
+      setUserEmail(location.state.email);
+    }
+  }, [location.state]);
+
   const [attributes, setAttributes] = useState({
     age: "Unknown",
     gender: "Unknown",
@@ -48,20 +58,14 @@ function WebCam() {
 
   // ---------------- Action Handlers ----------------
   const handleProceed = async () => {
-  try {
-    // Send confirmation email
-    await fetch("http://localhost:5000/confirm-email", { method: "POST" });
-
-    // Close camera
-    await fetch("http://localhost:5000/close-camera", { method: "POST" });
-    
-    // Navigate to feedback
-    navigate("/feedback", { state: { email: userEmail } });
-  } catch (err) {
-    console.error("Error sending email or closing camera:", err);
-  }
-};
-//navigate("/feedback", { state: { email: userEmail } });
+    try {
+      await fetch("http://localhost:5000/confirm-email", { method: "POST" });
+      await fetch("http://localhost:5000/close-camera", { method: "POST" });
+      navigate("/feedback", { state: { email: userEmail } });
+    } catch (err) {
+      console.error("Error sending email or closing camera:", err);
+    }
+  };
 
   const handleReset = () => {
     fetch("http://localhost:5000/reset", { method: "POST" })
@@ -71,9 +75,10 @@ function WebCam() {
 
   const handleProblem = () => {
     fetch("http://localhost:5000/close-camera", { method: "POST" })
-      .then(() => (window.location.href = "/wrong"))
+      .then(() => navigate("/wrongpage", { state: { email: userEmail } }))
       .catch((err) => console.error("Error closing camera:", err));
   };
+
 
   return (
     <div className="flex flex-col items-center gap-4">
