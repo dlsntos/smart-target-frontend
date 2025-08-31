@@ -36,11 +36,9 @@ function Home() {
       </div>
 
       {/* Main content */}
-      <div className="flex items-center justify-between px-40 pt-10 col-span-2 h-full z-10">
+      <div className="flex items-center justify-around items-center px-20 pt-10 col-span-2 h-full z-10">
         <AdSection />
-        <div className="h-[70%] w-[40%]">
-          <WebCam className="h-[70%] w-[40%] bg-white" />
-        </div>
+        <WebCam />
       </div>
     </div>
   );

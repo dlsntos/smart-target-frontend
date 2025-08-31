@@ -83,11 +83,14 @@ function WebCam() {
   return (
     <div className="flex flex-col items-center gap-4">
       <h2 className="text-lg font-bold">Ad Category: {adCategory}</h2>
-      <h3>Age Range: {attributes.age}</h3>
-      <h3>Gender: {attributes.gender}</h3>
-      <h3>Skin Color: {attributes.skin}</h3>
+      <div className="w-[500px] flex justify-evenly">
+        <h3>Age Range: {attributes.age}</h3>
+        <h3>Gender: {attributes.gender}</h3>
+        <h3>Skin Color: {attributes.skin}</h3>
+      </div>
 
-      <div className="relative w-[320px] h-[240px] mt-4 border-4 border-black rounded-lg overflow-hidden">
+      <div className="flex gap-x-5">
+        <div className="relative flex w-[320px] h-[240px] mt-4 border rounded-lg overflow-hidden">
         <img
           className="w-full h-full object-cover"
           src="http://localhost:5000/video_feed"
@@ -115,12 +118,13 @@ function WebCam() {
       {/* Ad follows locked category */}
       {adUrl && (
         <img
-          className="w-[320px] h-[180px] mt-4 object-cover rounded-lg border transition-opacity duration-500"
+          className="w-[320px] h-[240px] mt-4 object-cover rounded-lg border transition-opacity duration-500"
           src={adUrl}
           alt="Ad Display"
         />
       )}
 
+      </div>
       <p className="mt-2 text-sm text-gray-600">
         Align your face with the outline for best results. The ad preview will update according to the locked category.
       </p>
