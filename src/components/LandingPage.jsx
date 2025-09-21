@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logoImage from "../assets/photos/logo.png";
 
 function LandingPage() {
-  const scrollingText = "INDÚ•".repeat(100);
+  const scrollingText = '\u00A0INDÚ\u00A0'.repeat(100);
 
   return (
     <Link to="/consent">
@@ -18,14 +18,14 @@ function LandingPage() {
 
         {/* Top scrolling banner */}
         <div className="absolute top-0 left-0 w-full h-[2.5rem] overflow-hidden z-40">
-          <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex">
+          <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex font-extrabold italic tracking-tighter">
             <div className="ml-4">{scrollingText}</div>
           </div>
         </div>
 
         {/* Bottom scrolling banner */}
         <div className="absolute bottom-0 left-0 w-full h-[2.5rem] overflow-hidden z-40">
-          <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex">
+          <div className="whitespace-nowrap animate-scroll-horizontal text-2xl flex font-extrabold italic tracking-tighter">
             <div className="ml-4">{scrollingText}</div>
           </div>
         </div>
