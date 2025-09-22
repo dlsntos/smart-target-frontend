@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function WebCam() {
   const [adCategory, setAdCategory] = useState("idle");
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const [userEmail, setUserEmail] = useState(() => {
     return location.state?.email || localStorage.getItem("userEmail") || "";
   });
@@ -23,36 +22,32 @@ function WebCam() {
     gender: "Unknown",
     skin: "Unknown",
   });
+
   const [adUrl, setAdUrl] = useState("");
 
-  // ---------------- Poll backend for attributes + category ----------------
+  // ---------------- Poll backend for attributes + dynamic ads ----------------
   useEffect(() => {
-    const fetchAdData = async () => {
+    const fetchData = async () => {
       try {
         // Fetch attributes
         const attrRes = await fetch("http://localhost:5000/attributes");
         const attrData = await attrRes.json();
         setAttributes(attrData);
 
-        // Fetch locked category
+        // Fetch locked category (just for display, not for ads anymore)
         const catRes = await fetch("http://localhost:5000/ad-category");
         const catData = await catRes.json();
-        const category = catData.category || "idle";
-        setAdCategory(category);
+        setAdCategory(catData.category || "idle");
 
-        // Set ad based on category
-        if (category !== "idle") {
-          setAdUrl(`http://localhost:5000/ad-image?category=${category}&t=${Date.now()}`);
-        } else {
-          setAdUrl(""); // no ad if idle
-        }
+        // Always fetch from dynamic ads (ignore locked category for ad display)
+        setAdUrl(`http://localhost:5000/dynamic-ad?t=${Date.now()}`);
       } catch (err) {
         console.error("Polling error:", err);
       }
     };
 
-    fetchAdData(); // initial fetch
-    const interval = setInterval(fetchAdData, 2000); // refresh every 2s
+    fetchData(); // initial fetch
+    const interval = setInterval(fetchData, 2000); // refresh every 2s
     return () => clearInterval(interval);
   }, []);
 
@@ -60,10 +55,10 @@ function WebCam() {
   const handleProceed = async () => {
     try {
       await fetch("http://localhost:5000/confirm-visit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ category: adCategory }),
-    });
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category: adCategory }),
+      });
       await fetch("http://localhost:5000/confirm-email", { method: "POST" });
       await fetch("http://localhost:5000/close-camera", { method: "POST" });
       navigate("/feedback", { state: { email: userEmail } });
@@ -84,7 +79,6 @@ function WebCam() {
       .catch((err) => console.error("Error closing camera:", err));
   };
 
-
   return (
     <div className="flex flex-col items-center gap-4">
       <h2 className="text-lg font-bold">Ad Category: {adCategory}</h2>
@@ -95,43 +89,42 @@ function WebCam() {
       </div>
 
       <div className="flex gap-x-5">
+        {/* Webcam stream */}
         <div className="relative flex w-[320px] h-[240px] mt-4 border rounded-lg overflow-hidden">
-        <img
-          className="w-full h-full object-cover"
-          src="http://localhost:5000/video_feed"
-          alt="Webcam Stream"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            "--r": "110px",
-            "--cx": "50%",
-            "--cy": "50%",
-            "--ring": "4px",
-            background: `
-              radial-gradient(
-                circle at var(--cx) var(--cy),
-                rgba(0,0,0,0) 0 calc(var(--r) - var(--ring)),
-                rgba(255,255,255,0.35) calc(var(--r) - var(--ring)) var(--r),
-                rgba(0,0,0,0.75) var(--r)
-              )
-            `,
-          }}
-        />
-      </div>
+          <img
+            className="w-full h-full object-cover"
+            src="http://localhost:5000/video_feed"
+            alt="Webcam Stream"
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              "--r": "110px",
+              "--cx": "50%",
+              "--cy": "50%",
+              "--ring": "4px",
+              background: `
+                radial-gradient(
+                  circle at var(--cx) var(--cy),
+                  rgba(0,0,0,0) 0 calc(var(--r) - var(--ring)),
+                  rgba(255,255,255,0.35) calc(var(--r) - var(--ring)) var(--r),
+                  rgba(0,0,0,0.75) var(--r)
+                )
+              `,
+            }}
+          />
+        </div>
 
-      {/* Ad follows locked category */}
-      {adUrl && (
+        {/* Ad window (always visible, independent of locked category) */}
         <img
           className="w-[320px] h-[240px] mt-4 object-cover rounded-lg border transition-opacity duration-500"
           src={adUrl}
           alt="Ad Display"
         />
-      )}
-
       </div>
+
       <p className="mt-2 text-sm text-gray-600">
-        Align your face with the outline for best results. The ad preview will update according to the locked category.
+        Align your face with the outline for best results. The advertisement window (right side) is generalized
       </p>
 
       <div className="w-[660px] flex gap-2 mt-4">
