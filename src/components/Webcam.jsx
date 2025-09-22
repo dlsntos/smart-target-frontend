@@ -34,19 +34,19 @@ function WebCam() {
         const attrData = await attrRes.json();
         setAttributes(attrData);
 
-        // Fetch locked category (just for display, not for ads anymore)
+        //Fetch locked category (just for display, not for ads anymore)
         const catRes = await fetch("http://localhost:5000/ad-category");
         const catData = await catRes.json();
         setAdCategory(catData.category || "idle");
 
-        // Always fetch from dynamic ads (ignore locked category for ad display)
+        //Always fetch from dynamic ads (ignore locked category for ad display)
         setAdUrl(`http://localhost:5000/dynamic-ad?t=${Date.now()}`);
       } catch (err) {
         console.error("Polling error:", err);
       }
     };
 
-    fetchData(); // initial fetch
+    fetchData(); //initial fetch
     const interval = setInterval(fetchData, 2000); // refresh every 2s
     return () => clearInterval(interval);
   }, []);
